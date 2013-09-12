@@ -62,4 +62,13 @@ function getNoTests(callback) {
   request.get(NODECHECKER_ROOT + '/stats/withouttests', generateJsonCallback(callback))
 }
 
+nodechecker.requestTesting = requestTesting
+function requestTesting(module, callback) {
+  request.post(NODECHECKER_ROOT + '/test', {
+    json: {
+      module: module
+    }
+  }, generateJsonCallback(callback))
+}
+
 module.exports = nodechecker
